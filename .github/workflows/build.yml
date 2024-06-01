@@ -1,0 +1,57 @@
+name: Python application
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Get prefix
+        id: get_prefix
+        run: |
+          prefix=$(echo $(git show -s --format=%s) | cut -d'/' -f 1)
+          echo "Prefix: $prefix"
+          echo "prefix=$prefix" >> "$GITHUB_OUTPUT"
+
+          - name: Get latest tag
+            id: get_tag
+            run: |
+              git fetch --tags
+              latest_tag=$(git describe --tags `git rev-list --tags --max-count=1`)
+              echo "Latest tag: $latest_tag"
+              echo "tag=$latest_tag" >> "$GITHUB_OUTPUT"
+
+      - name: Determine version bump
+        id: bump_version
+        env:
+          prefix: ${{ steps.get_prefix.outputs.prefix }}
+          tag: ${{ steps.get_tag.outputs.tag }}
+        run: |
+          case $prefix in
+            core)
+              new_version=$(echo $tag | awk -F'.' '{print $1+1"."$2"."$3}')
+              ;;
+            feature)
+              new_version=$(echo $tag | awk -F'.' '{print $1"."$2+1".0"}')
+              ;;
+            fix)
+              new_version=$(echo $tag | awk -F'.' '{print $1"."$2"."$3+1}')
+              ;;
+            *)
+              echo "Invalid prefix: $prefix"
+              exit 1
+              ;;
+          esac
+          echo "New version: $new_version"
+          echo "TAG_NAME=$new_version" >> "$GITHUB_OUTPUT"
+
+      - name: Set new tag
+        run: |
+          git tag ${{ steps.bump_version.outputs.TAG_NAME }}
+          git push --tags
