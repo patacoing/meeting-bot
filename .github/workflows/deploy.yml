@@ -41,8 +41,8 @@ jobs:
           cp main.py package/
           cp .env package/
           cd package/
+          ls -la
           zip -r ../callback.zip *
-          cd ../
 
       - name: Upload ZIP archive
         uses: actions/upload-artifact@v4
