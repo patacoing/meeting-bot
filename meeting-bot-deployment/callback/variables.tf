@@ -25,3 +25,9 @@ variable "meeting_bot_callback_zip_name" {
   type    = string
 }
 
+variable "webhook_url" {
+  description = "Webhook URL for the callback"
+
+  type    = string
+}
+

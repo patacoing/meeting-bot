@@ -71,4 +71,10 @@ resource "aws_lambda_function" "meeting_bot_callback" {
   handler = "main.handler"
   source_code_hash = filebase64sha256(var.meeting_bot_callback_zip_name)
   role = aws_iam_role.meeting_role.arn
+
+    environment {
+        variables = {
+          WEBHOOK_URL = var.webhook_url
+        }
+    }
 }
