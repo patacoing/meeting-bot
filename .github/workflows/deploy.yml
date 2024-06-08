@@ -173,8 +173,8 @@ jobs:
       - name: Download ZIP archive
         uses: actions/download-artifact@v4
         with:
-          name: callback
-          path: meeting-bot-deployment/callback/zip
+          name: api
+          path: meeting-bot-deployment/api/zip
 
       - name: Terraform init
         run: terraform init
@@ -184,7 +184,7 @@ jobs:
         env:
           TF_VAR_aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY }}
           TF_VAR_aws_secret_access_key: ${{ secrets.AWS_SECRET_KEY }}
-          TF_VAR_meeting_bot_callback_zip_name: zip/callback.zip
+          TF_VAR_meeting_bot_zip_name: zip/api.zip
           TF_VAR_app_id: ${{ secrets.APP_ID }}
           TF_VAR_server_id: ${{ secrets.SERVER_ID }}
           TF_VAR_callback_schedule_arn: ${{ needs.deploy-callback.outputs.callback_schedule_arn }}
@@ -195,8 +195,8 @@ jobs:
           secret: ${{ github.TOKEN }}
           approvers: patacoing
           minimum-approvals: 1
-          issue-title: "Deploying Callback to prod"
-          issue-body: "Review the terraform plan, then approve or deny the deployment of Callback to prod."
+          issue-title: "Deploying Api to prod"
+          issue-body: "Review the terraform plan, then approve or deny the deployment of Api to prod."
           exclude-workflow-initiator-as-approver: false
 
       - name: Terraform apply
@@ -204,7 +204,7 @@ jobs:
         env:
           TF_VAR_aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY }}
           TF_VAR_aws_secret_access_key: ${{ secrets.AWS_SECRET_KEY }}
-          TF_VAR_meeting_bot_callback_zip_name: zip/callback.zip
+          TF_VAR_meeting_bot_zip_name: zip/api.zip
           TF_VAR_app_id: ${{ secrets.APP_ID }}
           TF_VAR_server_id: ${{ secrets.SERVER_ID }}
           TF_VAR_callback_schedule_arn: ${{ needs.deploy-callback.outputs.callback_schedule_arn }}

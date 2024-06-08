@@ -75,4 +75,13 @@ resource "aws_lambda_function" "meeting_bot" {
   handler = "app.main"
   source_code_hash = filebase64sha256(var.meeting_bot_zip_name)
   role = aws_iam_role.meeting_role.arn
+
+    environment {
+        variables = {
+          APP_ID = var.app_id
+          SERVER_ID = var.server_id
+          CALLBACK_SCHEDULE_ARN = var.callback_schedule_arn
+          ROLE_ARN = var.role_arn
+        }
+    }
 }
