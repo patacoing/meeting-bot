@@ -71,7 +71,9 @@ jobs:
           path: meeting-bot-deployment/callback/callback.zip
 
       - name: Terraform init
-        run: terraform init
+        run: |
+          terraform init
+          ls -la
 
       - name: Terraform plan
         run: terraform plan
