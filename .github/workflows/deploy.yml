@@ -68,7 +68,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: callback
-          path: meeting-bot-callback/callback.zip
+          path: meeting-bot-deployment/callback/callback.zip
 
       - name: Terraform init
         run: terraform init
@@ -78,7 +78,7 @@ jobs:
         env:
           TF_VAR_aws_access_key: ${{ secrets.AWS_ACCESS_KEY }}
           TF_VAR_aws_secret_key: ${{ secrets.AWS_SECRET_KEY }}
-          TF_VAR_meeting_bot_callback_zip_name: meeting-bot-callback/callback.zip
+          TF_VAR_meeting_bot_callback_zip_name: callback.zip
 
       - uses: trstringer/manual-approval@v1
         with:
@@ -94,7 +94,7 @@ jobs:
         env:
           TF_VAR_aws_access_key: ${{ secrets.AWS_ACCESS_KEY }}
           TF_VAR_aws_secret_key: ${{ secrets.AWS_SECRET_KEY }}
-          TF_VAR_meeting_bot_callback_zip_name: meeting-bot-callback/callback.zip
+          TF_VAR_meeting_bot_callback_zip_name: callback.zip
 
       - name: Terraform output
         run: terraform output
