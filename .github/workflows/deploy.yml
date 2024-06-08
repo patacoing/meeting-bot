@@ -35,6 +35,7 @@ jobs:
 
       - name: Create ZIP archive
         run: |
+          ls -la
           cp -r app package/
           cp main.py package/
           cp .env package/
