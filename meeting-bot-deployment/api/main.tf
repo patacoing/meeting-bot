@@ -72,7 +72,7 @@ resource "aws_lambda_function" "meeting_bot" {
   filename = var.meeting_bot_zip_name
   function_name = "meeting_bot_api"
   runtime = "python3.11"
-  handler = "app.main"
+  handler = "app.main.handler"
   source_code_hash = filebase64sha256(var.meeting_bot_zip_name)
   role = aws_iam_role.meeting_role.arn
 
