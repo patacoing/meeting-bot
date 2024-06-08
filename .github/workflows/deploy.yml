@@ -75,6 +75,9 @@ jobs:
 
       - name: Terraform plan
         run: terraform plan
+        env:
+          aws_access_key: ${{ secrets.AWS_ACCESS_KEY }}
+          aws_secret_key: ${{ secrets.AWS_SECRET_KEY }}
 
       - uses: trstringer/manual-approval@v1
         with:
@@ -87,6 +90,9 @@ jobs:
 
       - name: Terraform apply
         run: terraform apply
+        env:
+          aws_access_key: ${{ secrets.AWS_ACCESS_KEY }}
+          aws_secret_key: ${{ secrets.AWS_SECRET_KEY }}
 
       - name: Terraform output
         run: terraform output
