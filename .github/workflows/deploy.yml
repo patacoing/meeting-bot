@@ -71,9 +71,7 @@ jobs:
           path: meeting-bot-deployment/callback/zip
 
       - name: Terraform init
-        run: |
-          terraform init
-          ls -la zip/
+        run: terraform init
 
       - name: Terraform plan
         run: terraform plan
@@ -92,7 +90,7 @@ jobs:
           exclude-workflow-initiator-as-approver: false
 
       - name: Terraform apply
-        run: terraform apply
+        run: terraform apply -auto-approve
         env:
           TF_VAR_aws_access_key: ${{ secrets.AWS_ACCESS_KEY }}
           TF_VAR_aws_secret_key: ${{ secrets.AWS_SECRET_KEY }}
