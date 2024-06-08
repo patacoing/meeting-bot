@@ -48,7 +48,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: callback
-          path: callback.zip
+          path: meeting-bot-callback/callback.zip
 
   deploy-callback:
     runs-on: ubuntu-latest
