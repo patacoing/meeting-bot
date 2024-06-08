@@ -84,14 +84,14 @@ jobs:
           TF_VAR_meeting_bot_callback_zip_name: zip/callback.zip
           TF_VAR_webhook_url: ${{ secrets.WEBHOOK_URL }}
 
-      - uses: trstringer/manual-approval@v1
-        with:
-          secret: ${{ github.TOKEN }}
-          approvers: patacoing
-          minimum-approvals: 1
-          issue-title: "Deploying Callback to prod"
-          issue-body: "Review the terraform plan, then approve or deny the deployment of Callback to prod."
-          exclude-workflow-initiator-as-approver: false
+#      - uses: trstringer/manual-approval@v1
+#        with:
+#          secret: ${{ github.TOKEN }}
+#          approvers: patacoing
+#          minimum-approvals: 1
+#          issue-title: "Deploying Callback to prod"
+#          issue-body: "Review the terraform plan, then approve or deny the deployment of Callback to prod."
+#          exclude-workflow-initiator-as-approver: false
 
       - name: Terraform apply
         run: terraform apply -auto-approve
@@ -189,14 +189,14 @@ jobs:
           TF_VAR_role_arn: ${{ needs.deploy-callback.outputs.role_arn }}
           TF_VAR_client_public_key: ${{ secrets.CLIENT_PUBLIC_KEY }}
 
-      - uses: trstringer/manual-approval@v1
-        with:
-          secret: ${{ github.TOKEN }}
-          approvers: patacoing
-          minimum-approvals: 1
-          issue-title: "Deploying Api to prod"
-          issue-body: "Review the terraform plan, then approve or deny the deployment of Api to prod."
-          exclude-workflow-initiator-as-approver: false
+#      - uses: trstringer/manual-approval@v1
+#        with:
+#          secret: ${{ github.TOKEN }}
+#          approvers: patacoing
+#          minimum-approvals: 1
+#          issue-title: "Deploying Api to prod"
+#          issue-body: "Review the terraform plan, then approve or deny the deployment of Api to prod."
+#          exclude-workflow-initiator-as-approver: false
 
       - name: Terraform apply
         run: terraform apply -auto-approve

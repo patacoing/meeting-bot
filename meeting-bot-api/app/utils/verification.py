@@ -8,6 +8,9 @@ from app.utils.logging import logger
 
 def verify_key(raw_body: bytes, signature: str, timestamp: str) -> bool:
     verified_key = VerifyKey(bytes.fromhex(settings.CLIENT_PUBLIC_KEY))
+    logger.info(f"Verifying signature: {signature}")
+    logger.info(f"Verifying timestamp: {timestamp}")
+    logger.info(f"key: {settings.CLIENT_PUBLIC_KEY}")
 
     try:
         verified_key.verify(f'{timestamp}{raw_body}'.encode(), bytes.fromhex(signature))
