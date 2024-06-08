@@ -7,13 +7,13 @@ variable "aws_region" {
   default = "eu-west-3"
 }
 
-variable "aws_access_key" {
+variable "aws_access_key_id" {
   description = "AWS access key"
 
   type    = string
 }
 
-variable "aws_secret_key" {
+variable "aws_secret_access_key" {
   description = "AWS secret key"
 
   type    = string
