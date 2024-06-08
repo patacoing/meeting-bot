@@ -20,7 +20,9 @@ jobs:
           python-version: "3.11"
 
       - name: Move to app directory
-        run: cd meeting-bot-callback
+        run: |
+          cd meeting-bot-callback
+          ls -la
 
       - name: Create dir to store dependencies
         run: mkdir -p package
