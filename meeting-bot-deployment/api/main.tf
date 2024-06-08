@@ -53,9 +53,9 @@ resource "aws_iam_role_policy" "meeting_role_policy" {
           "iam:PassRole",
           "scheduler:CreateSchedule",
           "scheduler:DeleteSchedule",
-          # "logs:CreateLogGroup",
-          # "logs:CreateLogStream",
-          # "logs:PutLogEvents"
+          "logs:CreateLogGroup",
+          "logs:CreateLogStream",
+          "logs:PutLogEvents"
         ]
         Resource = "*"
       }
@@ -70,8 +70,8 @@ resource "aws_lambda_function_url" "meeting_bot_url" {
 
 resource "aws_lambda_function" "meeting_bot" {
   filename = var.meeting_bot_zip_name
-  function_name = "meeting_bot"
-  runtime = "python3.12"
+  function_name = "meeting_bot_api"
+  runtime = "python3.11"
   handler = "app.main"
   source_code_hash = filebase64sha256(var.meeting_bot_zip_name)
   role = aws_iam_role.meeting_role.arn

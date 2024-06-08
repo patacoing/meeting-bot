@@ -68,7 +68,7 @@ resource "aws_lambda_function" "meeting_bot_callback" {
   architectures = ["x86_64"]
   function_name = "meeting_bot_callback"
   runtime = "python3.11"
-  handler = "main.handler"
+  handler = "app.main.handler"
   source_code_hash = filebase64sha256(var.meeting_bot_callback_zip_name)
   role = aws_iam_role.meeting_role.arn
 
