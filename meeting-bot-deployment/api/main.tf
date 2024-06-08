@@ -26,7 +26,7 @@ provider "aws" {
 }
 
 resource "aws_iam_role" "meeting_role" {
-  name               = "meeting_role"
+  name               = "meeting_role_api"
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
@@ -42,7 +42,7 @@ resource "aws_iam_role" "meeting_role" {
 }
 
 resource "aws_iam_role_policy" "meeting_role_policy" {
-  name   = "meeting_role_policy"
+  name   = "meeting_role_api_policy"
   role   = aws_iam_role.meeting_role.id
   policy = jsonencode({
     Version = "2012-10-17"
