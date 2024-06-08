@@ -14,7 +14,7 @@ terraform {
 
   backend "s3" {
     bucket = "meeting-bot"
-    key    = "callback/terraform.tfstate"
+    key    = "api/terraform.tfstate"
     region = "eu-west-3"
   }
 }

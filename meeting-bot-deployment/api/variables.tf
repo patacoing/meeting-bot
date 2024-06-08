@@ -25,3 +25,27 @@ variable "meeting_bot_zip_name" {
   type    = string
 }
 
+variable "app_id" {
+  description = "App ID"
+
+  type    = string
+}
+
+variable "server_id" {
+  description = "Server ID"
+
+  type    = string
+}
+
+variable "callback_schedule_arn" {
+  description = "Callback schedule ARN"
+
+  type    = string
+}
+
+variable "role_arn" {
+  description = "Role ARN"
+
+  type    = string
+}
+
