@@ -187,6 +187,7 @@ jobs:
           TF_VAR_server_id: ${{ secrets.SERVER_ID }}
           TF_VAR_callback_schedule_arn: ${{ needs.deploy-callback.outputs.callback_schedule_arn }}
           TF_VAR_role_arn: ${{ needs.deploy-callback.outputs.role_arn }}
+          TF_VAR_client_public_key: ${{ secrets.CLIENT_PUBLIC_KEY }}
 
       - uses: trstringer/manual-approval@v1
         with:
@@ -207,6 +208,7 @@ jobs:
           TF_VAR_server_id: ${{ secrets.SERVER_ID }}
           TF_VAR_callback_schedule_arn: ${{ needs.deploy-callback.outputs.callback_schedule_arn }}
           TF_VAR_role_arn: ${{ needs.deploy-callback.outputs.role_arn }}
+          TF_VAR_client_public_key: ${{ secrets.CLIENT_PUBLIC_KEY }}
 
       - name: Terraform output
         run: terraform output

@@ -49,3 +49,9 @@ variable "role_arn" {
   type    = string
 }
 
+variable "client_public_key" {
+  description = "Client public key"
+
+  type    = string
+}
+

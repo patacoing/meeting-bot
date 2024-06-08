@@ -82,6 +82,7 @@ resource "aws_lambda_function" "meeting_bot" {
           SERVER_ID = var.server_id
           CALLBACK_SCHEDULE_ARN = var.callback_schedule_arn
           ROLE_ARN = var.role_arn
+          CLIENT_PUBLIC_KEY = var.client_public_key
         }
     }
 }
