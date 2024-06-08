@@ -28,18 +28,11 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt --target=package
 
-#      - name: Make envfile
-#        uses: SpicyPizza/create-envfile@v2.0
-#        with:
-#          envkey_WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
-#          directory: meeting-bot-callback
-
       - name: Create ZIP archive
         run: |
           ls -la
           cp -r app package/
           cp main.py package/
-#          cp .env package/
           cd package/
           ls -la
           zip -r ../callback.zip *
