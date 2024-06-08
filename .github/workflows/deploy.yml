@@ -68,7 +68,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: callback
-          path: callback.zip
+          path: meeting-bot-callback/callback.zip
 
       - name: Terraform init
         run: terraform init
