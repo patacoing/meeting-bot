@@ -32,7 +32,6 @@ jobs:
         run: |
           ls -la
           cp -r app package/
-          cp main.py package/
           cd package/
           ls -la
           zip -r ../callback.zip *
@@ -136,7 +135,6 @@ jobs:
         run: |
           ls -la
           cp -r app package/
-          cp main.py package/
           cd package/
           ls -la
           zip -r ../api.zip *
