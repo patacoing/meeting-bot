@@ -104,12 +104,12 @@ jobs:
       - name: Terraform output callback_schedule_arn
         id: callback_schedule_arn
         run: |
-          echo "CALLBACK_SCHEDULE_ARN=$(terraform output -raw function_arn)" >> "$GITHUB_OUTPUT"
+          echo "CALLBACK_SCHEDULE_ARN=$(terraform output -raw function_arn)" >> $GITHUB_OUTPUT
 
       - name: Terraform output role_arn
         id: role_arn
         run: |
-          echo "ROLE_ARN=$(terraform output -raw role_arn)" >> "$GITHUB_OUTPUT"
+          echo "ROLE_ARN=$(terraform output -raw role_arn)" >> $GITHUB_OUTPUT
 
   build-api-zip:
     runs-on: ubuntu-latest
