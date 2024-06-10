@@ -13,7 +13,7 @@ def verify_key(raw_body: bytes, signature: str, timestamp: str) -> bool:
     logger.info(f"key: \"{settings.CLIENT_PUBLIC_KEY}\"")
 
     try:
-        verified_key.verify(f'{timestamp}{raw_body}'.encode(), bytes.fromhex(signature))
+        verified_key.verify(f'{timestamp}{raw_body.decode("utf-8")}'.encode(), bytes.fromhex(signature))
         return True
     except Exception as ex:
         logger.error(ex)
