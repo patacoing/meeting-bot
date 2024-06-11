@@ -15,8 +15,7 @@ app = FastAPI()
 )
 async def read_root(request: Request):
     logger.info("Request received")
-    logger.info(request)
-    request = DiscordRequest(**request)
+    request = DiscordRequest(**(await request.json()))
 
     logger.info(request.dict())
 
