@@ -34,7 +34,10 @@ resource "aws_iam_role" "meeting_role" {
         Effect = "Allow"
         Action = "sts:AssumeRole"
         Principal = {
-          Service = "scheduler.amazonaws.com"
+          Service = [
+            "scheduler.amazonaws.com",
+            "lambda.amazonaws.com"
+          ]
         }
       }
     ]
