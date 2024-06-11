@@ -14,6 +14,7 @@ def verify_key(raw_body: bytes, signature: str, timestamp: str) -> bool:
 
     try:
         verified_key.verify(f'{timestamp}{raw_body.decode("utf-8")}'.encode(), bytes.fromhex(signature))
+        logger.info("Signature verified")
         return True
     except Exception as ex:
         logger.error(ex)
