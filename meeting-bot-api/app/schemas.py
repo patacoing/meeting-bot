@@ -53,7 +53,8 @@ class Option(BaseModel):
 class DiscordType(Enum):
     PING = 1
     PONG = 1
-    APP_COMMAND = 3
+    APPLICATION_COMMAND = 2
+    MESSAGE_COMPONENT = 3
     RESPONSE = 4
 
 

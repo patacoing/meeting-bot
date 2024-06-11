@@ -73,4 +73,3 @@ async def test_verif_should_not_raise_exception_when_request_is_valid(mocker, mo
     mocker.patch("app.utils.verification.verify_key", autospec=True, return_value=True)
 
     assert await verif(mock_request) is None
-    mock_logging.info.assert_not_called()

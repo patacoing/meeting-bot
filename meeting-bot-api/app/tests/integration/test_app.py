@@ -93,7 +93,7 @@ def test_read_root_should_return_200_when_cancel(client):
     }
 
 
-def test_read_root_should_return_422_when_unknown_command(client):
+def test_read_root_should_return_200_when_unknown_command(client):
     response = client.post(
         "/",
         json={
@@ -104,4 +104,10 @@ def test_read_root_should_return_422_when_unknown_command(client):
             }
         }
     )
-    assert response.status_code == status.HTTP_422_UNPROCESSABLE_ENTITY
+    assert response.status_code == status.HTTP_200_OK
+    assert response.json() == {
+        "type": 4,
+        "data": {
+            "content": "Invalid request"
+        }
+    }

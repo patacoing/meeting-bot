@@ -5,6 +5,7 @@ from app.schemas import DiscordRequest, DiscordType, DiscordResponse, Command, D
 from app.utils.verification import verif
 from app.utils.operation import plan_meeting, cancel_meeting
 from app.utils.logging import logger
+from pydantic import ValidationError
 
 app = FastAPI()
 
@@ -15,7 +16,14 @@ app = FastAPI()
 )
 async def read_root(request: Request):
     logger.info("Request received")
-    request = DiscordRequest(**(await request.json()))
+    try:
+        request = DiscordRequest(**(await request.json()))
+    except ValidationError as e:
+        logger.error(e)
+        return DiscordResponse(
+            type=DiscordType.RESPONSE,
+            data=DiscordResponseData(content="Invalid request")
+        ).model_dump(exclude_none=True)
 
     logger.info(request.dict())
 
