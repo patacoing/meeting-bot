@@ -36,3 +36,5 @@ async def verif(request: Request):
     if signature is None or timestamp is None or not verify_key(body, signature, timestamp):
         logger.info("Bad request signature")
         raise BadRequestSignature()
+
+    logger.info("Request verified")

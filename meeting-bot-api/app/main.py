@@ -14,6 +14,7 @@ app = FastAPI()
     dependencies=[Depends(verif)],
 )
 async def read_root(request):
+    logger.info("Request received")
     logger.info(request)
     request = DiscordRequest(**request)
 
