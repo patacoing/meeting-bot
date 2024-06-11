@@ -11,11 +11,11 @@ client = boto3.client('scheduler', region_name=settings.AWS_REGION)
 async def schedule(
         name: str,
         description: str,
-        year: int,
-        month: int,
-        day: int,
-        hour: int,
-        minute: int
+        year: str,
+        month: str,
+        day: str,
+        hour: str,
+        minute: str
 ) -> None:
     try:
         arn = client.create_schedule(

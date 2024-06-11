@@ -3,6 +3,7 @@ from uuid import uuid4
 from .schedule import schedule, cancel_schedule
 from .parse import parse_fields
 from app.utils.logging import logger
+from app.utils.date import leading_zero
 from app.settings import settings
 from ..exceptions import InvalidOptionsCount
 from ..schemas import DiscordRequestData, OptionName, DATE_SEPARATOR, TIME_SEPARATOR
@@ -34,11 +35,11 @@ async def plan_meeting(data: DiscordRequestData) -> str:
     await schedule(
         name=name,
         description=description,
-        year=current_date.year,
-        month=current_date.month,
-        day=current_date.day,
-        hour=current_date.hour,
-        minute=current_date.minute
+        year=leading_zero(current_date.year),
+        month=leading_zero(current_date.month),
+        day=leading_zero(current_date.day),
+        hour=leading_zero(current_date.hour),
+        minute=leading_zero(current_date.minute)
     )
 
     logger.info(f"Meeting {name} planned for {date} at {time} - {description}")

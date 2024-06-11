@@ -36,6 +36,9 @@ resource "aws_iam_role" "meeting_role" {
           Service = "lambda.amazonaws.com"
         }
         Action = "sts:AssumeRole"
+        Principal = {
+          Service = "scheduler.amazonaws.com"
+        }
       }
     ]
   })
@@ -81,7 +84,7 @@ resource "aws_lambda_function" "meeting_bot" {
           APP_ID = var.app_id
           SERVER_ID = var.server_id
           CALLBACK_SCHEDULE_ARN = var.callback_schedule_arn
-          ROLE_ARN = var.role_arn
+          ROLE_ARN = aws_iam_role.meeting_role.arn
           CLIENT_PUBLIC_KEY = var.client_public_key
         }
     }

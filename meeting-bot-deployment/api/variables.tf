@@ -43,12 +43,6 @@ variable "callback_schedule_arn" {
   type    = string
 }
 
-variable "role_arn" {
-  description = "Role ARN"
-
-  type    = string
-}
-
 variable "client_public_key" {
   description = "Client public key"
 
