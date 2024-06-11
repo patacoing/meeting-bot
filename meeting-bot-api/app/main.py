@@ -14,6 +14,9 @@ app = FastAPI()
     dependencies=[Depends(verif)],
 )
 async def read_root(request: DiscordRequest):
+    print(request.dict())
+
+
     if request.type == DiscordType.PING:
         logger.debug("Received PING")
         response_data = DiscordResponse(type=DiscordType.PONG)
@@ -36,7 +39,7 @@ async def read_root(request: DiscordRequest):
             data=DiscordResponseData(content=message_content)
         )
 
-    return response_data.dict(exclude_none=True)
+    return response_data.model_dump(exclude_none=True)
 
 
 handler = Mangum(app, lifespan="off")

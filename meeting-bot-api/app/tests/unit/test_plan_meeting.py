@@ -7,6 +7,7 @@ from app.exceptions import InvalidOptionsCount
 from app.schemas import DiscordRequestData, Command, Option, OptionName, DATE_SEPARATOR, TIME_SEPARATOR
 from app.settings import settings
 from app.utils.operation import plan_meeting
+from app.utils.date import leading_zero
 
 
 @pytest.fixture
@@ -69,10 +70,10 @@ async def test_plan_meeting_should_return_message_content_when_valid_options_cou
     mocked_schedule.assert_called_once_with(
         name=f"meeting-{uuid4()}",
         description=description,
-        year=current_date.year,
-        month=current_date.month,
-        day=current_date.day,
-        hour=current_date.hour,
-        minute=current_date.minute
+        year=leading_zero(current_date.year),
+        month=leading_zero(current_date.month),
+        day=leading_zero(current_date.day),
+        hour=leading_zero(current_date.hour),
+        minute=leading_zero(current_date.minute)
     )
     mock_logging.info.assert_called_once()
