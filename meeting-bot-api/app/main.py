@@ -13,9 +13,11 @@ app = FastAPI()
     "/",
     dependencies=[Depends(verif)],
 )
-async def read_root(request: DiscordRequest):
-    print(request.dict())
+async def read_root(request):
+    logger.info(request)
+    request = DiscordRequest(**request)
 
+    logger.info(request.dict())
 
     if request.type == DiscordType.PING:
         logger.debug("Received PING")
