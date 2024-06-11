@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Depends
+from fastapi import FastAPI, Depends, Request
 from mangum import Mangum
 
 from app.schemas import DiscordRequest, DiscordType, DiscordResponse, Command, DiscordResponseData
@@ -13,7 +13,7 @@ app = FastAPI()
     "/",
     dependencies=[Depends(verif)],
 )
-async def read_root(request):
+async def read_root(request: Request):
     logger.info("Request received")
     logger.info(request)
     request = DiscordRequest(**request)
